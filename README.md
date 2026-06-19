@@ -1,4 +1,4 @@
-# Daily Tracker
+# Daily Dashboard
 
 ## `About`
 
