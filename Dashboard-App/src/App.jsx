@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react'
 import './App.css'
 
-// build the app
+// app 
 function App() {
 
-  // what displays in the app
   return (
     <>
       <section id="main">
@@ -14,5 +13,5 @@ function App() {
   )
 }
 
-// sends to main to be displayed
+// show the app to the 
 export default App
