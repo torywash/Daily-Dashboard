@@ -7,21 +7,26 @@
     background-color: var(--accent-bg);
     box-shadow: var(--shadow);
     padding: 20px;
-    animation: fadeIn 1s ease;
 }
 
 .head-container {
     margin-bottom: 25px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+.head-container h1, #clock{
+    animation: fadeUp 2s ease;
 }
 
 .body-container {
     display: flex;
     flex-direction: column;
     gap: 25px;
+    animation: fadeUp 1.5s ease;
 }
 
 .body-container .card {
-    gap: 25px;
     box-shadow: none;
 }
 
@@ -46,7 +51,7 @@
 
 /* ids */
 #main {
-    margin: 25px;
+    margin: 0 5vw;
     position: relative;
     z-index: 1;
 }
@@ -56,7 +61,7 @@
 }
 
 /* animations */
-@keyframes fadeIn {
+@keyframes fadeUp {
     from {
         opacity: 0;
         transform: translateY(20px);
