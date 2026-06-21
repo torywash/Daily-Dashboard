@@ -1,6 +1,8 @@
 // imports
 import { useState, useEffect } from 'react'
 import Silk from './Silk'
+import PromptModal from './PromptModal'
+import Clock from './Clock'
 import './App.css'
 
 // app functions and events
@@ -12,7 +14,7 @@ function App() {
   const verse = 'for so God loved the world'
 
   // time dependent header
-  const userName = 'User'
+  const [userName, setUserName] = useState('User')
   const hour = new Date().getHours()
 
   let userPrompt = ''
@@ -31,27 +33,26 @@ function App() {
     backgroundCol = '#301e50'
   }
 
-  // time for our clock
-  const [clock, setClock] = useState(() => formatTime(new Date()))
+  const [showPrompt, setShowPrompt] = useState(false)
 
-  // update the clock every 1 sec
   useEffect(() => {
-    const timerId = setInterval(() => {
-      setClock(formatTime(new Date()))
-    }, 1000)
+    const savedName = localStorage.getItem('dashboardUserName')
+    const promptShown = localStorage.getItem('dashboardPromptShown') === 'true'
 
-    return () => clearInterval(timerId)
+    if (savedName) {
+      setUserName(savedName)
+    }
+    if (!promptShown) {
+      setShowPrompt(true)
+    }
   }, [])
 
-  // format the time
-  function formatTime(date) {
-    const weekday = ['SUN', 'MON', 'TUE', 'WED', 'THUR', 'FRI', 'SAT']
-    const day_ofweek = String(weekday[date.getDay()]).padStart(2, '0')
-    const day = String(date.getDate()).padStart(2, '0')
-    const hrs = String(date.getHours()).padStart(2, '0')
-    const mins = String(date.getMinutes()).padStart(2, '0')
-    const secs = String(date.getSeconds()).padStart(2, '0')
-    return `${day_ofweek} ${day} | ${local_temp} | ${hrs}:${mins}:${secs}`
+  function handlePromptSubmit(name) {
+    if (!name) return
+    localStorage.setItem('dashboardUserName', name)
+    localStorage.setItem('dashboardPromptShown', 'true')
+    setUserName(name)
+    setShowPrompt(false)
   }
 
   // what will be displayed
@@ -65,24 +66,25 @@ function App() {
         <section id="main">
           <div className="head-container">
             <h1>{userPrompt}</h1>
-            <span id="clock">{clock}</span>
+            <Clock localTemp={local_temp} />
           </div>
           <div className="body-container">
-            <div class="body-container card">
+            <div className="body-container card">
               <h2>Weather</h2>
               <span id="temperature">{local_temp}</span>
               <span id="conditions">{local_cond}</span>
               <span id="town">{local_town}</span>
             </div>
-            <div class="body-container card">
+            <div className="body-container card">
               <h2>Daily Verse</h2>
               <span id="verse-otd">{verse}</span>
             </div>
-            <div class="body-container card">
+            <div className="body-container card">
               <h2>Calendar</h2>
             </div>
           </div>
         </section>
+        {showPrompt && <PromptModal onSubmit={handlePromptSubmit} />}
       </div>
     </>
   )
