@@ -4,8 +4,14 @@ import './App.css'
 
 // app functions and events
 function App() {
+  // placeholders
+  const local_temp = '75 F'
+  const local_cond = 'windy'
+  const local_town = 'cedar falls'
+  const verse = 'for so God loved the world'
+
   // time dependent header
-  const userName = 'User'
+  const userName = 'Tory'
   const hour = new Date().getHours()
 
   let userPrompt = ''
@@ -33,17 +39,15 @@ function App() {
 
   // format the time
   function formatTime(date) {
+    const weekday = ['SUN', 'MON', 'TUE', 'WED', 'THUR', 'FRI', 'SAT']
+    const day_ofweek = String(weekday[date.getDay()]).padStart(2, '0')
+    const day = String(date.getDate()).padStart(2, '0')
     const hrs = String(date.getHours()).padStart(2, '0')
     const mins = String(date.getMinutes()).padStart(2, '0')
-    return `${hrs}:${mins}`
+    return `${day_ofweek} ${day} | ${local_temp} | ${hrs}:${mins}`
   }
 
-  // placeholders
-  const local_temp = '75 F'
-  const local_cond = 'windy'
-  const local_town = 'cedar falls'
-  const verse = 'for so God loved the world'
-
+  // what will be displayed
   return (
     <>
       <section id="main">
