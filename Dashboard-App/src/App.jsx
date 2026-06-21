@@ -13,7 +13,7 @@ function App() {
     userPrompt = `Good Morning, ${userName}!`
   } else if (hour >= 12 && hour < 17) {
     userPrompt = `Good Afternoon, ${userName}!`
-  } else if (hour >= 17 && hour <= 20) {
+  } else if (hour >= 17 && hour <= 21) {
     userPrompt = `Good Evening, ${userName}!`
   } else {
     userPrompt = `You're a night owl, ${userName}!`
@@ -22,6 +22,7 @@ function App() {
   // time for our clock
   const [clock, setClock] = useState(() => formatTime(new Date()))
 
+  // update the clock every 1 sec
   useEffect(() => {
     const timerId = setInterval(() => {
       setClock(formatTime(new Date()))
@@ -30,11 +31,19 @@ function App() {
     return () => clearInterval(timerId)
   }, [])
 
+  // format the time
   function formatTime(date) {
     const hrs = String(date.getHours()).padStart(2, '0')
     const mins = String(date.getMinutes()).padStart(2, '0')
     return `${hrs}:${mins}`
   }
+
+  // placeholders
+  const local_temp = '75 F'
+  const local_cond = 'windy'
+  const local_town = 'cedar falls'
+  const acct_balance = '$2,000'
+  const verse = 'for so God loved the world'
 
   return (
     <>
@@ -55,10 +64,8 @@ function App() {
             <span id="balance">{acct_balance}</span>
           </div>
           <div class="body-container card">
-            <h2>Plans</h2>
-          </div>
-          <div class="body-container card">
-            <h2>Daily Devotional</h2>
+            <h2>Daily Verse</h2>
+            <span id="verse-otd">{verse}</span>
           </div>
         </div>
       </section>
