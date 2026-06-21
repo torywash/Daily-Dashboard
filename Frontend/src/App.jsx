@@ -1,5 +1,6 @@
 // imports
 import { useState, useEffect } from 'react'
+import Silk from './Silk'
 import './App.css'
 
 // app functions and events
@@ -15,14 +16,19 @@ function App() {
   const hour = new Date().getHours()
 
   let userPrompt = ''
+  let backgroundCol = ''
   if (hour >= 4 && hour < 12) {
     userPrompt = `Good Morning, ${userName}!`
+    backgroundCol = '#543a81'
   } else if (hour >= 12 && hour < 17) {
     userPrompt = `Good Afternoon, ${userName}!`
+    backgroundCol = '#4b2a83'
   } else if (hour >= 17 && hour <= 21) {
     userPrompt = `Good Evening, ${userName}!`
+    backgroundCol = '#441760'
   } else {
     userPrompt = `You're a night owl, ${userName}!`
+    backgroundCol = '#301e50'
   }
 
   // time for our clock
@@ -51,27 +57,33 @@ function App() {
   // what will be displayed
   return (
     <>
-      <section id="main">
-        <div className="head-container">
-          <h1>{userPrompt}</h1>
-          <span id="clock">{clock}</span>
+      <div className="app-shell">
+        <div className="background-wrap">
+          <Silk color={backgroundCol}/>
         </div>
-        <div className="body-container">
-          <div class="body-container card">
-            <h2>Weather</h2>
-            <span id="temperature">{local_temp}</span>
-            <span id="conditions">{local_cond}</span>
-            <span id="town">{local_town}</span>
+
+        <section id="main">
+          <div className="head-container">
+            <h1>{userPrompt}</h1>
+            <span id="clock">{clock}</span>
           </div>
-          <div class="body-container card">
-            <h2>Daily Verse</h2>
-            <span id="verse-otd">{verse}</span>
+          <div className="body-container">
+            <div class="body-container card">
+              <h2>Weather</h2>
+              <span id="temperature">{local_temp}</span>
+              <span id="conditions">{local_cond}</span>
+              <span id="town">{local_town}</span>
+            </div>
+            <div class="body-container card">
+              <h2>Daily Verse</h2>
+              <span id="verse-otd">{verse}</span>
+            </div>
+            <div class="body-container card">
+              <h2>Calendar</h2>
+            </div>
           </div>
-          <div class="body-container card">
-            <h2>Calendar</h2>
-          </div>
-        </div>
-      </section>
+        </section>
+      </div>
     </>
   )
 }
