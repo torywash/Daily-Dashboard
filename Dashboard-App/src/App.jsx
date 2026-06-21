@@ -42,7 +42,6 @@ function App() {
   const local_temp = '75 F'
   const local_cond = 'windy'
   const local_town = 'cedar falls'
-  const acct_balance = '$2,000'
   const verse = 'for so God loved the world'
 
   return (
@@ -60,12 +59,11 @@ function App() {
             <span id="town">{local_town}</span>
           </div>
           <div class="body-container card">
-            <h2>Finances</h2>
-            <span id="balance">{acct_balance}</span>
-          </div>
-          <div class="body-container card">
             <h2>Daily Verse</h2>
             <span id="verse-otd">{verse}</span>
+          </div>
+          <div class="body-container card">
+            <h2>Calendar</h2>
           </div>
         </div>
       </section>
