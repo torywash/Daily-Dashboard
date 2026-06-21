@@ -11,7 +11,7 @@ function App() {
   const verse = 'for so God loved the world'
 
   // time dependent header
-  const userName = 'Tory'
+  const userName = 'User'
   const hour = new Date().getHours()
 
   let userPrompt = ''
@@ -44,7 +44,8 @@ function App() {
     const day = String(date.getDate()).padStart(2, '0')
     const hrs = String(date.getHours()).padStart(2, '0')
     const mins = String(date.getMinutes()).padStart(2, '0')
-    return `${day_ofweek} ${day} | ${local_temp} | ${hrs}:${mins}`
+    const secs = String(date.getSeconds()).padStart(2, '0')
+    return `${day_ofweek} ${day} | ${local_temp} | ${hrs}:${mins}:${secs}`
   }
 
   // what will be displayed

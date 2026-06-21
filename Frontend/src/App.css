@@ -2,10 +2,34 @@
 
 /* classNames */
 .head-container, .body-container {
+    border: 1px solid var(--accent-border);
+    border-radius: 20px;
+    background-color: var(--accent-bg);
+    box-shadow: var(--shadow);
+    padding: 20px;
     animation: fadeIn 1s ease;
 }
 
+.head-container {
+    margin-bottom: 25px;
+}
+
+.body-container {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.body-container .card {
+    gap: 25px;
+    box-shadow: none;
+}
+
 /* ids */
+#main {
+    margin: auto;
+}
+
 #clock {
     font-size: 20px;
 }
