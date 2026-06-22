@@ -2,17 +2,13 @@
 import { useState, useEffect } from 'react'
 import Silk from './Silk'
 import PromptModal from './PromptModal'
+import Weather from './Weather'
 import Clock from './Clock'
+import Verse from './Verse'
 import './App.css'
 
 // app functions and events
 function App() {
-  
-  // placeholders
-  const local_temp = '75 F'
-  const local_cond = 'windy'
-  const local_town = 'cedar falls'
-  const verse = 'for so God loved the world'
 
   // time dependent header
   const [userName, setUserName] = useState(
@@ -66,19 +62,15 @@ function App() {
           <div className="head-container">
             <div className="head-content">
               <h1>{userPrompt}</h1>
-              <Clock localTemp={local_temp} />
+              <Clock />
             </div>
           </div>
           <div className="body-container">
             <div className="body-container card">
-              <h2>Weather</h2>
-              <span id="temperature">{local_temp}</span>
-              <span id="conditions">{local_cond}</span>
-              <span id="town">{local_town}</span>
+              <Weather />
             </div>
             <div className="body-container card">
-              <h2>Daily Verse</h2>
-              <span id="verse-otd">{verse}</span>
+              <Verse />
             </div>
             <div className="body-container card">
               <h2>Calendar</h2>

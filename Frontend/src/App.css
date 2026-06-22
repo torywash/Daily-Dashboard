@@ -38,7 +38,7 @@
 }
 
 .body-container input[type=text] {
-    font-family: monospace;
+    font-family: var(--mono);
     text-align: center;
     padding: 10px;
     font-size: 5vw;
@@ -48,7 +48,7 @@
 }
 
 .body-container button {
-    font-family: monospace;
+    font-family: var(--mono);
     text-align: center;
     padding: 10px;
     width: 75%;
