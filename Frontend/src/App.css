@@ -98,6 +98,25 @@
     align-items: center;
     justify-content: center;
     background-color: rgba(0, 0, 0, 0.75);
+    opacity: 1;
+    transition: opacity 200ms ease;
+}
+
+.modal-overlay.fade-out {
+    opacity: 0;
+}
+
+.body-container {
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+    animation: fadeUp 1.5s ease;
+    transition: opacity 200ms ease, transform 200ms ease;
+}
+
+.body-container.closing {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.98);
 }
 
 /* ids */

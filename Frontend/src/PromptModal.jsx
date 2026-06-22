@@ -1,25 +1,26 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import './App.css'
 
 function PromptModal({ onSubmit }) {
     const [name, setName] = useState('')
-
-    useEffect(() => {
-        console.log('PromptModal MOUNTED, onSubmit?', typeof onSubmit)
-        return () => console.log('PromptModal UNMOUNTED')
-    }, [onSubmit])
+    const [isClosing, setIsClosing] = useState(false)
 
     function handleSubmit(event) {
         event.preventDefault()
+        if (isClosing) return
+
         const trimmed = name.trim()
-        console.log('PromptModal handleSubmit:', { name, trimmed })
         if (!trimmed) return
-        onSubmit?.(trimmed)
+
+        setIsClosing(true)
+        window.setTimeout(() => {
+            onSubmit?.(trimmed)
+        }, 200)
     }
 
     return (
-        <div className="modal-overlay">
-            <div className="body-container">
+        <div className={isClosing ? 'modal-overlay fade-out' : 'modal-overlay'}>
+            <div className={isClosing ? 'body-container closing' : 'body-container'}>
                 <h1>What Should We Call You?</h1>
                 <form id="getUserName" onSubmit={handleSubmit}>
                     <label>
