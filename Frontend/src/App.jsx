@@ -7,6 +7,7 @@ import './App.css'
 
 // app functions and events
 function App() {
+  
   // placeholders
   const local_temp = '75 F'
   const local_cond = 'windy'
@@ -14,7 +15,18 @@ function App() {
   const verse = 'for so God loved the world'
 
   // time dependent header
-  const [userName, setUserName] = useState('User')
+  const [userName, setUserName] = useState(
+    () => localStorage.getItem('dashboardUserName') || 'User'
+  )
+
+  // show the prompt only if the saved flag is not true
+  //const [showPrompt, setShowPrompt] = useState(
+    //() => localStorage.getItem('dashboardPromptShown') !== 'true'
+  //)
+  // show prompt for debugging purposes
+  const [showPrompt, setShowPrompt] = useState(true)
+
+  // set the hour variable
   const hour = new Date().getHours()
 
   let userPrompt = ''
@@ -33,19 +45,6 @@ function App() {
     backgroundCol = '#301e50'
   }
 
-  const [showPrompt, setShowPrompt] = useState(false)
-
-  useEffect(() => {
-    const savedName = localStorage.getItem('dashboardUserName')
-    const promptShown = localStorage.getItem('dashboardPromptShown') === 'true'
-
-    if (savedName) {
-      setUserName(savedName)
-    }
-    if (!promptShown) {
-      setShowPrompt(true)
-    }
-  }, [])
 
   function handlePromptSubmit(name) {
     if (!name) return
@@ -65,8 +64,10 @@ function App() {
 
         <section id="main">
           <div className="head-container">
-            <h1>{userPrompt}</h1>
-            <Clock localTemp={local_temp} />
+            <div className="head-content">
+              <h1>{userPrompt}</h1>
+              <Clock localTemp={local_temp} />
+            </div>
           </div>
           <div className="body-container">
             <div className="body-container card">

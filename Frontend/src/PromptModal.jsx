@@ -1,19 +1,25 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 
 function PromptModal({ onSubmit }) {
     const [name, setName] = useState('')
 
+    useEffect(() => {
+        console.log('PromptModal MOUNTED, onSubmit?', typeof onSubmit)
+        return () => console.log('PromptModal UNMOUNTED')
+    }, [onSubmit])
+
     function handleSubmit(event) {
         event.preventDefault()
         const trimmed = name.trim()
+        console.log('PromptModal handleSubmit:', { name, trimmed })
         if (!trimmed) return
         onSubmit?.(trimmed)
     }
 
     return (
-        <div className="modal">
-            <div className="body-container modal">
+        <div className="modal-overlay">
+            <div className="body-container">
                 <h1>What Should We Call You?</h1>
                 <form id="getUserName" onSubmit={handleSubmit}>
                     <label>
