@@ -5,6 +5,7 @@ import PromptModal from './PromptModal'
 import Weather from './Weather'
 import Clock from './Clock'
 import Verse from './Verse'
+import Calendar from './calendar'
 import './App.css'
 
 // app functions and events
@@ -66,14 +67,18 @@ function App() {
             </div>
           </div>
           <div className="body-container">
-            <div className="body-container card">
-              <Weather />
+            <div class="body-container left">
+              <div className="body-container card">
+                <Weather />
+              </div>
+              <div className="body-container card">
+                <Verse />
+              </div>
             </div>
-            <div className="body-container card">
-              <Verse />
-            </div>
-            <div className="body-container card">
-              <h2>Calendar</h2>
+            <div class="body-container right">
+              <div className="body-container card">
+                <Calendar />
+              </div>
             </div>
           </div>
         </section>

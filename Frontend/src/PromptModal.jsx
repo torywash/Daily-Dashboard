@@ -20,7 +20,7 @@ function PromptModal({ onSubmit }) {
 
     return (
         <div className={isClosing ? 'modal-overlay fade-out' : 'modal-overlay'}>
-            <div className={isClosing ? 'body-container closing' : 'body-container'}>
+            <div className={isClosing ? 'body-container closing' : 'body-container modal'}>
                 <h1>What Should We Call You?</h1>
                 <form id="getUserName" onSubmit={handleSubmit}>
                     <label>
